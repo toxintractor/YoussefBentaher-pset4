@@ -45,11 +45,8 @@ public class Main2Activity extends AppCompatActivity {
         upDate.setOnClickListener(new Main2Activity.UpDate());
         txtBeschrijving.setText(taakObject.getBeschrijving());
 
-
-
-
-
     }
+
 
     public class UpDate implements View.OnClickListener {
 

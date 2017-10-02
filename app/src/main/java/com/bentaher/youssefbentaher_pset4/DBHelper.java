@@ -94,8 +94,8 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(KEY_NAME, taak.getTaak());
         contentValues.put(KEY_DESCRIPTION, taak.getBeschrijving());
         contentValues.put(IS_CHECKED, taak.getIschecked());
-
         return db.update(TABLE_NAME, contentValues, KEY_ID + " =  ? ", new String[] {String.valueOf(taak.getID())});
+
     }
 
     public void delete(Taak taak){

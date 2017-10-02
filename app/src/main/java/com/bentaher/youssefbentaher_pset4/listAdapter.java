@@ -27,7 +27,7 @@ public class listAdapter extends ArrayAdapter {
     private MainActivity listActivity;
     DBHelper db;
     CheckBox theCHeckBox;
-    Taak taak;
+    Taak tk;
 
 
     public listAdapter(Context context, ArrayList<Taak> data) {
@@ -44,31 +44,37 @@ public class listAdapter extends ArrayAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
 
-        LayoutInflater theInflater = LayoutInflater.from(getContext());
-        final View theView = theInflater.inflate(R.layout.listlayout, parent, false);
+        //LayoutInflater theInflater = LayoutInflater.from(getContext());
+        //final View theView = theInflater.inflate(R.layout.listlayout, parent, false);
 
-        taak = taken.get(position);
-        final String taakNaam = taak.getTaak();
+        if(view == null){
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.listlayout, parent, false);
+        }
 
-        final TextView theTextView = (TextView) theView.findViewById(R.id.taaktext);
+
+        final Taak tk = taken.get(position);
+        final String taakNaam = tk.getTaak();
+
+        final TextView theTextView = (TextView) view.findViewById(R.id.taaktext);
 
         theTextView.setText(taakNaam);
 
 
-        theCHeckBox = (CheckBox) theView.findViewById(R.id.checklist);
-        theCHeckBox.setChecked(Boolean.parseBoolean(taak.getIschecked()));
+        final CheckBox theCHeckBox = (CheckBox) view.findViewById(R.id.checklist);
+        theCHeckBox.setChecked(Boolean.parseBoolean(tk.getIschecked()));
         Log.i("check", String.valueOf(theCHeckBox.isChecked()));
 
-        theCHeckBox.setOnClickListener(new keepCHeck());
-        theTextView.setOnClickListener(new goItem(taakNaam));
+        theCHeckBox.setOnClickListener(new keepCHeck(theCHeckBox, tk));
+        theTextView.setOnClickListener(new goItem(tk));
 
         /*
-        theView.setOnClickListener(new View.OnClickListener(){
+        theTextView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, taakNaam, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, tk.getTaak(), Toast.LENGTH_SHORT).show();
                 Intent jumppage = new Intent(context, Main2Activity.class);
-                jumppage.putExtra("data", taak);
+                jumppage.putExtra("data", tk);
                 context.startActivity(jumppage);
             }
 
@@ -80,13 +86,13 @@ public class listAdapter extends ArrayAdapter {
             public void onClick(View view) {
                 if(theCHeckBox.isChecked()){
                     Toast.makeText(context, "het is gecheckt", Toast.LENGTH_SHORT).show();
-                    taak.setIschecked("true");
-                    db.update(taak);
+                    tk.setIschecked("true");
+                    db.update(tk);
                 }
                 else{
                     Toast.makeText(context, "het is niet gecheckt", Toast.LENGTH_SHORT).show();
-                    taak.setIschecked("false");
-                    db.update(taak);
+                    tk.setIschecked("false");
+                    db.update(tk);
                 }
             }
 
@@ -95,11 +101,7 @@ public class listAdapter extends ArrayAdapter {
 
 
 
-
-
-
-
-        return theView;
+        return view;
     }
 
     public int getCount(){
@@ -108,36 +110,40 @@ public class listAdapter extends ArrayAdapter {
 
     class keepCHeck implements View.OnClickListener {
 
-        public keepCHeck(){
+        CheckBox ckBox;
+        Taak tk1;
+        public keepCHeck(CheckBox chBox, Taak tk2){
+             ckBox = chBox;
+            tk1 = tk2;
         }
 
         @Override
         public void onClick(View view) {
-            if(theCHeckBox.isChecked()){
+            if(ckBox.isChecked()){
                 Toast.makeText(context, "het is gecheckt", Toast.LENGTH_SHORT).show();
-                taak.setIschecked("true");
-                db.update(taak);
+                tk1.setIschecked("true");
+                db.update(tk1);
             }
             else{
                 Toast.makeText(context, "het is niet gecheckt", Toast.LENGTH_SHORT).show();
-                taak.setIschecked("false");
-                db.update(taak);
+                tk1.setIschecked("false");
+                db.update(tk1);
             }
 
         }
     }
 
     class goItem implements View.OnClickListener {
-        String taakn;
-        public goItem(String tk){
-            taakn = tk;
+        Taak tk1;
+        public goItem(Taak tk2){
+            tk1 = tk2;
         }
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(context, taakn, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, tk1, Toast.LENGTH_SHORT).show();
             Intent jumppage = new Intent(context, Main2Activity.class);
-            jumppage.putExtra("data", taak);
+            jumppage.putExtra("data", tk1);
             context.startActivity(jumppage);
 
         }

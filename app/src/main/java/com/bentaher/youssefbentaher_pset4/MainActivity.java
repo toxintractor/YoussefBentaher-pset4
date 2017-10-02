@@ -39,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
         taakArray = db.getAllData();
 
         setAdapter();
-
-
-
     }
 
     public class putWords implements View.OnClickListener {
@@ -84,31 +81,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-
-
-    /*
-    //Opslaan in shareprefferences
-    public void saveShared(View view){
-        String edtValue = edtTxt.getText().toString();
-
-        SharedPreferences prefs = this.getSharedPreferences("settings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-
-        editor.putString("editText", edtValue);
-        editor.commit();
-
-    }
-
-    //ophalen ui shareprefferences
-    public void loadShared(){
-
-    }
-
-    //ophalen ui shareprefferences
-    public void makeIntent(View view){
-        Intent jumppage = new Intent(MainActivity.this, Main2Activity.class);
-        startActivity(jumppage);
-    }
-    */
 }
