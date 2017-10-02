@@ -7,24 +7,35 @@
     android:orientation="vertical"
     tools:context="com.bentaher.youssefbentaher_pset4.MainActivity">
 
+
     <EditText
-        android:id="@+id/editInvoer"
+        android:id="@+id/taakNaam"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="zoeken"/>
+        android:hint="naam"/>
 
-    <Button
-        android:id="@+id/knopGa"
+    <EditText
+        android:id="@+id/taakBeschrijving"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="bttn"/>
+        android:inputType="textPersonName"
+        android:hint="beschrijving"/>
 
     <Button
-        android:id="@+id/knoptwee"
+        android:id="@+id/invoeren"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tweede"/>
+        android:text="invoeren"/>
+
+
+
+    <ListView
+        android:id="@+id/lstView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
 
 
 </LinearLayout>
