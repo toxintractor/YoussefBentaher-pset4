@@ -36,7 +36,7 @@ public class listAdapter extends ArrayAdapter {
         this.listActivity = (MainActivity) context;
         this.context = context;
 
-        db = new DBHelper(context);
+        db = DBHelper.getInsanse(context);
 
     }
 

@@ -23,9 +23,17 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String KEY_DESCRIPTION = "description";
     public static final String IS_CHECKED = "checked";
 
+    public static DBHelper sinstance;
+
+    public static synchronized DBHelper getInsanse(Context context){
+        if(sinstance == null){
+            sinstance = new DBHelper(context.getApplicationContext());
+        }
+        return sinstance;
+    }
 
 
-    public DBHelper(Context context) {
+    private DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
     }

@@ -30,7 +30,7 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        db = new DBHelper(this);
+        db = DBHelper.getInsanse(this);
         taakObject = (Taak) getIntent().getExtras().getSerializable("data");
 
         beschrijving = (EditText) findViewById(R.id.taakBeschrijving);

@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        db = new DBHelper(this);
+        db = DBHelper.getInsanse(this);
 
         naamTxt = (EditText) findViewById(R.id.taakNaam);
         beschrijvingTxt = (EditText) findViewById(R.id.taakBeschrijving);
